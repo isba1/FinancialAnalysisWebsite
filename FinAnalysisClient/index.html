@@ -59,14 +59,20 @@
         </header>
 
         <div class="input">
-            <form action="ticker", method="GET">
+            <!-- <form action="/ticker/getInfo", method="GET">
             <label for="name">Enter a Stock Ticker:</label>
             <input type="text" id="name" name="name">
             <button type="submit">Submit</button>
+            </form> -->
+            <form id="stock-form">
+                <label for="symbol">Enter stock ticker:</label>
+                <input type="text" id="symbol" name="symbol">
+                <button type="submit">Submit</button>
             </form>
         </div>
 
 
     </main>
+    <script src="style.js"></script>
   </body>
 </html>
