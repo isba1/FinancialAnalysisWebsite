@@ -1,11 +1,10 @@
 package com.FinAnalysis.Website.Controller;
 
 import com.FinAnalysis.Website.Service.StockInfoService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ticker")
@@ -16,8 +15,9 @@ public class StockInfoController {
     private StockInfoService service;
 
     @GetMapping("/getIncomeStatement")
-    public String getIncomeStatement(@RequestBody String symbol) {
-        return service.getIncomeStatement(symbol);
+    public JSONObject getIncomeStatement(@RequestParam(name = "symbol") String symbol) {
+        String jsonString = service.getIncomeStatement(symbol);
+        return new JSONObject(jsonString);
     }
 
 }

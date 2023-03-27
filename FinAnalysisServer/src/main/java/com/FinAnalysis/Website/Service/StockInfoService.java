@@ -12,7 +12,6 @@ public class StockInfoService {
     private final String apiKey = "KJHOTYX4RQYVFABB";
     private final int timeout = 3000;
 
-    @Autowired
     private final AlphaVantageConnector apiConnector = new AlphaVantageConnector(apiKey, timeout);
     private final IncomeStatement incomeStatement = new IncomeStatement(apiConnector);
     private final BalanceSheet balanceSheet = new BalanceSheet(apiConnector);
