@@ -1,4 +1,6 @@
 const form = document.querySelector('#stock-form');
+const jsonDisplay = document.getElementById('json-display');
+
 
 form.addEventListener('submit', (event) => {
   event.preventDefault(); // Prevent default form submission behavior
@@ -17,7 +19,7 @@ form.addEventListener('submit', (event) => {
   .then(data => {
     // Update the page with the new data
     // For example, you could display the stock information in a table or chart
-    console.log(data);
+    console.log(JSON.stringify(data, null, 2));
   })
   .catch(error => console.error(error));
 });
