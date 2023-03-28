@@ -9,7 +9,7 @@ form.addEventListener('submit', (event) => {
   const symbol = form.elements['symbol'].value;
 
   // Send AJAX request to server
-  fetch(`/ticker/getIncomeStatement?symbol=${symbol}`, {
+  fetch(`http://localhost:8080/ticker/getIncomeStatement?symbol=${symbol}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
