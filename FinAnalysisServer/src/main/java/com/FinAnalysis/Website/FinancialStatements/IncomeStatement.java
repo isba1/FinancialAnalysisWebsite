@@ -1,6 +1,7 @@
 package com.FinAnalysis.Website.FinancialStatements;
 
 import com.FinAnalysis.Website.APIConnection.APIConnector;
+import org.json.JSONObject;
 
 public class IncomeStatement {
     private final APIConnector apiConnector;
@@ -9,8 +10,8 @@ public class IncomeStatement {
         this.apiConnector = apiConnector;
     }
 
-    public String getIncomeStatement(String symbol) {
-        String json = apiConnector.getRequest(new Symbol(symbol), Function.INCOME_STATEMENT);
+    public JSONObject getIncomeStatement(String symbol) {
+        JSONObject json = apiConnector.getRequest(new Symbol(symbol), Function.INCOME_STATEMENT);
         return json;
     }
 

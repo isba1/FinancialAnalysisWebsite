@@ -5,6 +5,7 @@ import com.FinAnalysis.Website.FinancialStatements.BalanceSheet;
 import com.FinAnalysis.Website.FinancialStatements.CashFlow;
 import com.FinAnalysis.Website.FinancialStatements.IncomeStatement;
 import com.FinAnalysis.Website.FinancialStatements.TimeSeries;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,19 +21,19 @@ public class StockInfoService {
     private final TimeSeries timeSeries = new TimeSeries(apiConnector);
 
 
-    public String getIncomeStatement(String symbol) {
+    public JSONObject getIncomeStatement(String symbol) {
         return incomeStatement.getIncomeStatement(symbol);
     }
 
-    public String getBalanceSheet(String symbol) {
+    public JSONObject getBalanceSheet(String symbol) {
         return balanceSheet.getBalanceSheet(symbol);
     }
 
-    public String getCashFlow(String symbol) {
+    public JSONObject getCashFlow(String symbol) {
         return cashFlow.getCashFlow(symbol);
     }
 
-    public String getTimeSeries(String symbol) {
+    public JSONObject getTimeSeries(String symbol) {
         return timeSeries.getTimeSeries(symbol);
     }
 

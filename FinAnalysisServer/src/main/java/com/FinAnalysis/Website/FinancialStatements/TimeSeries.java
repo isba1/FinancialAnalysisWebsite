@@ -1,6 +1,7 @@
 package com.FinAnalysis.Website.FinancialStatements;
 
 import com.FinAnalysis.Website.APIConnection.APIConnector;
+import org.json.JSONObject;
 
 public class TimeSeries {
     private final APIConnector apiConnector;
@@ -10,8 +11,8 @@ public class TimeSeries {
     }
 
 
-    public String getTimeSeries(String symbol) {
-        String json = apiConnector.getRequest(new Symbol(symbol), Function.TIME_SERIES_DAILY_ADJUSTED);
+    public JSONObject getTimeSeries(String symbol) {
+        JSONObject json = apiConnector.getRequest(new Symbol(symbol), Function.TIME_SERIES_DAILY_ADJUSTED);
         return json;
     }
 }

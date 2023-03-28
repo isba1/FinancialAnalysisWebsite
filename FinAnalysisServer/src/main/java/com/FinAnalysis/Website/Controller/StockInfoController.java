@@ -4,6 +4,9 @@ import com.FinAnalysis.Website.Service.StockInfoService;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,10 +18,10 @@ public class StockInfoController {
     private StockInfoService service;
 
     @GetMapping("/getIncomeStatement")
-    public String getIncomeStatement(@RequestParam(name = "symbol") String symbol) {
-        String jsonString = service.getIncomeStatement(symbol);
+    public ResponseEntity<Object> getIncomeStatement(@RequestParam(name = "symbol") String symbol) {
+        JSONObject jsonObject = service.getIncomeStatement(symbol);
         //return new JSONObject(jsonString);
-        return jsonString;
+        return new ResponseEntity<>(jsonObject.toMap(), HttpStatus.OK);
     }
 
 }

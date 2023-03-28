@@ -1,9 +1,13 @@
 package com.FinAnalysis.Website.APIConnection;
 
+import com.google.gson.Gson;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -24,7 +28,7 @@ public class AlphaVantageConnector implements APIConnector{
     }
 
     @Override
-    public String getRequest(APIParameter... apiParameters) {
+    public JSONObject getRequest(APIParameter... apiParameters) {
         String params = getParameters(apiParameters);
         try {
             URL request = new URL(BASE_URL + params);
@@ -32,16 +36,33 @@ public class AlphaVantageConnector implements APIConnector{
             connection.setConnectTimeout(timeOut);
             connection.setReadTimeout(timeOut);
 
-            InputStreamReader inputStream = new InputStreamReader(connection.getInputStream(), "UTF-8");
-            BufferedReader bufferedReader = new BufferedReader(inputStream);
-            StringBuilder responseBuilder = new StringBuilder();
+            InputStream inputStream = connection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                responseBuilder.append(line);
-            }
-            bufferedReader.close();
-            return responseBuilder.toString();
+            JSONTokener jsonTokener = new JSONTokener(bufferedReader);
+
+            JSONObject jsonObject = new JSONObject(jsonTokener);
+
+            //System.out.println(jsonObject);
+
+            return jsonObject;
+
+//            InputStreamReader inputStream = new InputStreamReader(connection.getInputStream(), "UTF-8");
+//            BufferedReader bufferedReader = new BufferedReader(inputStream);
+//            StringBuilder responseBuilder = new StringBuilder();
+//
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                responseBuilder.append(line);
+//            }
+//            bufferedReader.close();
+//
+//            Gson gson = new Gson();
+//            JSONObject jsonObject = gson.fromJson(responseBuilder.toString(), JSONObject.class);
+//
+//            System.out.println(responseBuilder);
+//
+//            return jsonObject;
         } catch (IOException e) {
             throw new AlphaVantageException("failure sending request", e);
         }

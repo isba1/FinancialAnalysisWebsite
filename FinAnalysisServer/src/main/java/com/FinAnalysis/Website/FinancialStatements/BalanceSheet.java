@@ -2,6 +2,7 @@ package com.FinAnalysis.Website.FinancialStatements;
 
 import com.FinAnalysis.Website.APIConnection.APIConnector;
 import com.FinAnalysis.Website.APIConnection.APIParameter;
+import org.json.JSONObject;
 
 public class BalanceSheet {
 
@@ -12,8 +13,8 @@ public class BalanceSheet {
     }
 
 
-    public String getBalanceSheet(String symbol) {
-        String json = apiConnector.getRequest(new Symbol(symbol), Function.BALANCE_SHEET);
+    public JSONObject getBalanceSheet(String symbol) {
+        JSONObject json = apiConnector.getRequest(new Symbol(symbol), Function.BALANCE_SHEET);
         return json;
     }
 }

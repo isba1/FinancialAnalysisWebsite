@@ -2,6 +2,7 @@ package com.FinAnalysis.Website.FinancialStatements;
 
 import com.FinAnalysis.Website.APIConnection.APIConnector;
 import com.FinAnalysis.Website.APIConnection.APIParameter;
+import org.json.JSONObject;
 
 public class CashFlow {
     private final APIConnector apiConnector;
@@ -10,8 +11,8 @@ public class CashFlow {
         this.apiConnector = apiConnector;
     }
 
-    public String getCashFlow(String symbol) {
-        String json = apiConnector.getRequest(new Symbol(symbol), Function.CASH_FLOW);
+    public JSONObject getCashFlow(String symbol) {
+        JSONObject json = apiConnector.getRequest(new Symbol(symbol), Function.CASH_FLOW);
         return json;
     }
 
