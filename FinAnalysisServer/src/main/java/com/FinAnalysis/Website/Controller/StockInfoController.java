@@ -15,9 +15,10 @@ public class StockInfoController {
     private StockInfoService service;
 
     @GetMapping("/getIncomeStatement")
-    public JSONObject getIncomeStatement(@RequestParam(name = "symbol") String symbol) {
+    public String getIncomeStatement(@RequestParam(name = "symbol") String symbol) {
         String jsonString = service.getIncomeStatement(symbol);
-        return new JSONObject(jsonString);
+        //return new JSONObject(jsonString);
+        return jsonString;
     }
 
 }

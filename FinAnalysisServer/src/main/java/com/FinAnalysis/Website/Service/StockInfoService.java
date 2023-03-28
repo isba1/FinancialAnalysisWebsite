@@ -4,6 +4,7 @@ import com.FinAnalysis.Website.APIConnection.AlphaVantageConnector;
 import com.FinAnalysis.Website.FinancialStatements.BalanceSheet;
 import com.FinAnalysis.Website.FinancialStatements.CashFlow;
 import com.FinAnalysis.Website.FinancialStatements.IncomeStatement;
+import com.FinAnalysis.Website.FinancialStatements.TimeSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class StockInfoService {
     private final IncomeStatement incomeStatement = new IncomeStatement(apiConnector);
     private final BalanceSheet balanceSheet = new BalanceSheet(apiConnector);
     private final CashFlow cashFlow = new CashFlow(apiConnector);
+    private final TimeSeries timeSeries = new TimeSeries(apiConnector);
 
 
     public String getIncomeStatement(String symbol) {
@@ -28,6 +30,10 @@ public class StockInfoService {
 
     public String getCashFlow(String symbol) {
         return cashFlow.getCashFlow(symbol);
+    }
+
+    public String getTimeSeries(String symbol) {
+        return timeSeries.getTimeSeries(symbol);
     }
 
 
