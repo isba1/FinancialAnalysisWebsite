@@ -1,0 +1,14 @@
+{
+  "name": "middlelayer",
+  "version": "1.0.0",
+  "description": "Middle layer for FinAnalysisWebsite",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ishaan Das",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
