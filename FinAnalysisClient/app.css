@@ -1,0 +1,31 @@
+.App {
+    text-align: center;
+  }
+  
+  form {
+    margin-top: 2rem;
+  }
+  
+  input {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    margin-right: 0.5rem;
+  }
+  
+  button {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  pre {
+    margin-top: 2rem;
+    white-space: pre-wrap;
+  }
+  
