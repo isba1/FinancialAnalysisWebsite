@@ -31,16 +31,16 @@ import './App.css';
 
 function App() {
   const [symbol, setSymbol] = useState('');
-  const [response, setResponse] = useState('');
+  const [response, setData] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const result = await axios.get(`http://localhost:8080/ticker/getInfo?symbol=${symbol}`);
-      setResponse(JSON.stringify(result.data));
+      setData(result.data);
     } catch (error) {
-      setResponse(JSON.stringify(error));
+      console.error(error);
     }
   };
 
@@ -50,7 +50,30 @@ function App() {
         <input type="text" value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder="Enter stock symbol" />
         <button type="submit">Submit</button>
       </form>
-      <pre>{response}</pre>
+      {/* <pre>{response}</pre> */}
+      {/* <div>
+      {response.data.map(item => (
+        <div key={item.id}>
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+        </div>
+      ))}
+      </div> */}
+      <div>
+        {Array.isArray(response)
+          ? response.map((item) => (
+              <div key={item.id}>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </div>
+            ))
+          : Object.values(response).map((item) => (
+              <div key={item.id}>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </div>
+            ))}
+      </div>
     </div>
   );
 }
