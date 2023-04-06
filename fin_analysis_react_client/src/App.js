@@ -37,7 +37,7 @@ function App() {
     event.preventDefault();
 
     try {
-      const result = await axios.get(`http://localhost:8080/ticker/getIncomeStatement?symbol=${symbol}`);
+      const result = await axios.get(`http://localhost:8080/ticker/getInfo?symbol=${symbol}`);
       setResponse(JSON.stringify(result.data));
     } catch (error) {
       setResponse(JSON.stringify(error));
