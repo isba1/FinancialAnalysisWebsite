@@ -31,11 +31,10 @@ public class StockInfoController {
     }
 
     @GetMapping("/getInfo")
-    @CrossOrigin(origins = "hhtp://localhost:3000")
-    @ResponseBody
-    public FinancialInfo getInfo(@RequestParam(name = "symbol") String symbol) {
-        FinancialInfo financialInfo = service.getInfo(symbol);
-        return financialInfo;
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<Object> getInfo(@RequestParam(name = "symbol") String symbol) {
+        JSONObject financialInfo = service.getInfo(symbol);
+        return new ResponseEntity<>(financialInfo.toMap(), HttpStatus.OK);
     }
 
 }

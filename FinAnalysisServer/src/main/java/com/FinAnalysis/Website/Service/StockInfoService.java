@@ -44,12 +44,12 @@ public class StockInfoService {
     }
 
     // function to get individual most important info
-    public FinancialInfo getInfo(String symbol) {
+    public JSONObject getInfo(String symbol) {
         final JSONObject IS = incomeStatement.getIncomeStatement(symbol);
         final JSONObject BS = balanceSheet.getBalanceSheet(symbol);
         final JSONObject CF = cashFlow.getCashFlow(symbol);
         final JSONObject TS = timeSeries.getTimeSeries(symbol);
-        final JSONObject timeSeries = TS.getJSONObject("Time Series (5min)");
+        //final JSONObject timeSeries = TS.getJSONObject("Time Series (5min)");
 
         final JSONArray BSAnnualReports = BS.getJSONArray("annualReports");
         final JSONArray ISAnnualReports = IS.getJSONArray("annualReports");
@@ -59,9 +59,9 @@ public class StockInfoService {
         final JSONObject firstISAnnual = ISAnnualReports.getJSONObject(0);
         final JSONObject firstCFAnnual = CFAnnualReports.getJSONObject(0);
 
-        Iterator<String> keys = timeSeries.keys();
-        String firstKey = keys.next();
-        final JSONObject lastDay = timeSeries.getJSONObject(firstKey);
+//        Iterator<String> keys = timeSeries.keys();
+//        String firstKey = keys.next();
+//        final JSONObject lastDay = timeSeries.getJSONObject(firstKey);
 
 
         // raw data
@@ -73,12 +73,20 @@ public class StockInfoService {
         final float debtEquity = debtEquityRatio(firstBSAnnual);
         final float EPS = EPS(firstCFAnnual, firstBSAnnual);
         final float freeCashFlow = freeCashFlow(firstCFAnnual);
-        final float priceToBook  = priceToBookRatio(firstBSAnnual, lastDay);
-        final float PERatio = PERatio(lastDay, firstCFAnnual, firstBSAnnual);
+//        final float priceToBook  = priceToBookRatio(firstBSAnnual, lastDay);
+//        final float PERatio = PERatio(lastDay, firstCFAnnual, firstBSAnnual);
         final float ROE = ROE(firstCFAnnual, firstBSAnnual);
 
-        FinancialInfo financialInfo = new FinancialInfo(currentRatio, workingCapital, debtEquity, EPS, freeCashFlow,
-                priceToBook, PERatio, ROE);
+//        FinancialInfo financialInfo = new FinancialInfo(currentRatio, workingCapital, debtEquity, EPS, freeCashFlow, ROE);
+////                priceToBook, PERatio, ROE);
+
+        JSONObject financialInfo = new JSONObject();
+        financialInfo.put("Current Ratio", currentRatio);
+        financialInfo.put("Working Capital", workingCapital);
+        financialInfo.put("Debt to Equity", debtEquity);
+        financialInfo.put("EPS", EPS);
+        financialInfo.put("Free Cash Flow", freeCashFlow);
+        financialInfo.put("Return on Equity", ROE);
 
         return financialInfo;
 
@@ -114,7 +122,7 @@ public class StockInfoService {
     }
 
     private float freeCashFlow(JSONObject firstCFAnnual) {
-        final float operatingCashFlow = firstCFAnnual.getFloat("operatingCashFlow");
+        final float operatingCashFlow = firstCFAnnual.getFloat("operatingCashflow");
         final float capitalExpenditures = firstCFAnnual.getFloat("capitalExpenditures");
 
         return operatingCashFlow - capitalExpenditures;

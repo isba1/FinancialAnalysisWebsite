@@ -26,8 +26,8 @@ public class FinancialInfo {
     float debtEquityRatio;
     float EPS;
     float freeCashFlow;
-    float priceToBookRatio;
-    float PERatio;
+//    float priceToBookRatio;
+//    float PERatio;
     float ROE;
 
 
@@ -36,8 +36,8 @@ public class FinancialInfo {
 //                         float netIncome, float grossProfit, float sharesOutstanding, float operatingCashFlow,
 //                         float capitalExpenditures, double priceToday, float EBITDA, float debt, float investments,
 //                         float cashCashEquivalents, double dividendYield, float currentAssets, float currentLiabilities,
-                         float currentRatio, float workingCapital, float debtEquityRatio, float EPS, float freeCashFlow,
-                         float priceToBookRatio, float PERatio, float ROE) {
+                         float currentRatio, float workingCapital, float debtEquityRatio, float EPS, float freeCashFlow, float ROE) {
+//                         float priceToBookRatio, float PERatio, float ROE) {
 //        this.totalAssets = totalAssets;
 //        this.totalLiabilities = totalLiabilities;
 //        this.shareHolderEquity = shareHolderEquity;
@@ -60,8 +60,8 @@ public class FinancialInfo {
         this.debtEquityRatio = debtEquityRatio;
         this.EPS = EPS;
         this.freeCashFlow = freeCashFlow;
-        this.priceToBookRatio = priceToBookRatio;
-        this.PERatio = PERatio;
+//        this.priceToBookRatio = priceToBookRatio;
+//        this.PERatio = PERatio;
         this.ROE = ROE;
     }
 }
