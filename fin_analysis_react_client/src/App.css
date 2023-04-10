@@ -72,3 +72,10 @@ pre {
   white-space: pre-wrap;
 }
 
+table {
+  border-collapse: separate;
+  border-spacing: 10px;
+  margin: auto
+}
+
+
