@@ -37,4 +37,11 @@ public class StockInfoController {
         return new ResponseEntity<>(financialInfo.toMap(), HttpStatus.OK);
     }
 
+//    @GetMapping("/getRank")
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    public ResponseEntity<Object> getRank(@RequestParam(name = "symbol") String symbol) {
+//
+//    }
+
+
 }

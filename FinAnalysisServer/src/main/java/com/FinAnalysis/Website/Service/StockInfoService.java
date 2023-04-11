@@ -65,6 +65,18 @@ public class StockInfoService {
 
 
         // raw data
+        final long totalAssets = firstBSAnnual.getLong("totalCurrentAssets");
+        final long totalLiabilites = firstBSAnnual.getLong("totalCurrentLiabilities");
+        final long shareHolderEquity = firstBSAnnual.getLong("totalShareholderEquity");
+        final long currentRevenue = firstISAnnual.getLong("totalRevenue");
+        final long netIncome = firstCFAnnual.getLong("netIncome");
+        final long grossProfit = firstISAnnual.getLong("grossProfit");
+        final long sharesOutstanding = firstBSAnnual.getLong("commonStockSharesOutstanding");
+        final long operatingCashFlow = firstCFAnnual.getLong("operatingCashflow");
+        final long EBITDA = firstISAnnual.getLong("ebitda");
+        final long debt = firstBSAnnual.getLong("currentDebt");
+        final long investments = firstBSAnnual.getLong("currentDebt");
+        final float dividendYield = firstCFAnnual.getFloat("dividendPayout");
 
 
         //calculations
@@ -77,10 +89,23 @@ public class StockInfoService {
 //        final float PERatio = PERatio(lastDay, firstCFAnnual, firstBSAnnual);
         final float ROE = ROE(firstCFAnnual, firstBSAnnual);
 
+
 //        FinancialInfo financialInfo = new FinancialInfo(currentRatio, workingCapital, debtEquity, EPS, freeCashFlow, ROE);
 ////                priceToBook, PERatio, ROE);
 
         JSONObject financialInfo = new JSONObject();
+        financialInfo.put("Total Assets", totalAssets);
+        financialInfo.put("Total Liabilities", totalLiabilites);
+        financialInfo.put("Share Holder Equity", shareHolderEquity);
+        financialInfo.put("Current Revenue", currentRevenue);
+        financialInfo.put("Net Income", netIncome);
+        financialInfo.put("Gross Profit", grossProfit);
+        financialInfo.put("Shares Outstanding", sharesOutstanding);
+        financialInfo.put("Operating Cash Flow", operatingCashFlow);
+        financialInfo.put("EBITDA", EBITDA);
+        financialInfo.put("Debt", debt);
+        financialInfo.put("Investments", investments);
+        financialInfo.put("Divident Payout", dividendYield);
         financialInfo.put("Current Ratio", currentRatio);
         financialInfo.put("Working Capital", workingCapital);
         financialInfo.put("Debt to Equity", debtEquity);
