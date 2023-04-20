@@ -105,7 +105,7 @@ public class StockInfoService {
         financialInfo.put("EBITDA", EBITDA);
         financialInfo.put("Debt", debt);
         financialInfo.put("Investments", investments);
-        financialInfo.put("Divident Payout", dividendYield);
+        financialInfo.put("Dividend Payout", dividendYield);
         financialInfo.put("Current Ratio", currentRatio);
         financialInfo.put("Working Capital", workingCapital);
         financialInfo.put("Debt to Equity", debtEquity);
@@ -153,21 +153,21 @@ public class StockInfoService {
         return operatingCashFlow - capitalExpenditures;
     }
 
-    private float priceToBookRatio(JSONObject firstBSAnnual, JSONObject lastDay) {
-        final float finalPrice = lastDay.getFloat("4. close");
-        final float sharesOutstanding = firstBSAnnual.getFloat("commonStockSharesOutstanding");
-        final float shareholderEquity = firstBSAnnual.getFloat("totalShareholderEquity");
+//    private float priceToBookRatio(JSONObject firstBSAnnual, JSONObject lastDay) {
+//        final float finalPrice = lastDay.getFloat("4. close");
+//        final float sharesOutstanding = firstBSAnnual.getFloat("commonStockSharesOutstanding");
+//        final float shareholderEquity = firstBSAnnual.getFloat("totalShareholderEquity");
+//
+//        return finalPrice / (shareholderEquity / sharesOutstanding);
+//    }
 
-        return finalPrice / (shareholderEquity / sharesOutstanding);
-    }
 
-
-    private float PERatio(JSONObject lastDay, JSONObject firstCFAnnual, JSONObject firstBSAnnual) {
-        final float EPS = EPS(firstCFAnnual, firstBSAnnual);
-        final float finalPrice = lastDay.getFloat("4. close");
-
-        return finalPrice / EPS;
-    }
+//    private float PERatio(JSONObject lastDay, JSONObject firstCFAnnual, JSONObject firstBSAnnual) {
+//        final float EPS = EPS(firstCFAnnual, firstBSAnnual);
+//        final float finalPrice = lastDay.getFloat("4. close");
+//
+//        return finalPrice / EPS;
+//    }
 
     private float ROE(JSONObject firstCFAnnual, JSONObject firstBSAnnual) {
         final float netIncome = firstCFAnnual.getFloat("netIncome");
@@ -175,7 +175,12 @@ public class StockInfoService {
 
         return netIncome / shareholderEquity;
     }
-
+//
+//    private float rank(JSONObject firstCFAnnual, JSONObject firstBSAnnual, JSONObject firstISAnnual) {
+//        final float netIncome = firstCFAnnual.getFloat("netIncome");
+//
+//
+//    }
 
 
 
